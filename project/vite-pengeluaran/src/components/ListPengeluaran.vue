@@ -1,15 +1,13 @@
 <script setup>
-import {computed } from "vue"
+import { computed } from "vue";
 
 const props = defineProps({
   daftar: Array,
+  totalSemua: Number,
 });
-
-
-
 </script>
 <template>
-    <h4>Total: </h4>
+  <h2>Total: {{ totalSemua }}</h2>
   <table>
     <thead>
       <tr>
@@ -30,7 +28,7 @@ const props = defineProps({
 <style scoped>
 table {
   width: 100%;
-  margin: 20px auto;
+  margin: 0px auto 20px;
   table-layout: auto;
 }
 table,

@@ -1,14 +1,14 @@
 <script setup>
 import { ref, reactive, defineEmits } from "vue";
 
-const jumlah = ref(0);
+const jumlah = ref("");
 const keterangan = ref("");
 
 const emits = defineEmits(["form"]);
 
 const sendEmit = () => {
   emits("form", jumlah.value, keterangan.value);
-  jumlah.value = null;
+  jumlah.value = "";
   keterangan.value = "";
 };
 </script>
@@ -16,11 +16,11 @@ const sendEmit = () => {
   <form @click.prevent="">
     <label for="jumlah">Jumlah:</label>
     <input
-      type="number"
+      type="text"
       id="jumlah"
       name="jumlah"
       pattern="[0-9]+"
-      v-model.number="jumlah"
+      v-model="jumlah"
       placeholder="10000"
     />
     <label for="keterangan">Keterangan:</label>
@@ -32,6 +32,7 @@ const sendEmit = () => {
 form {
   border: 4px dashed black;
   padding: 32px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
