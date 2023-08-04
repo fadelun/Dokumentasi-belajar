@@ -1,10 +1,16 @@
 <script setup>
-import { computed } from "vue";
+import { defineEmits } from "vue";
 
 const props = defineProps({
-  daftar: Array,
+  daftarStorage: Array,
   totalSemua: Number,
 });
+
+const emit = defineEmits(["hapus"]);
+
+const handleHapus = (item) => {
+  emit("hapus", item);
+};
 </script>
 <template>
   <h2>Total: {{ totalSemua }}</h2>
@@ -17,10 +23,11 @@ const props = defineProps({
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in daftar" :key="index">
+      <tr v-for="(item, index) in daftarStorage" :key="index">
         <td>{{ index + 1 }}</td>
         <td>{{ item.jumlah }}</td>
         <td>{{ item.keterangan }}</td>
+        <button @click="handleHapus(item)">Hapus</button>
       </tr>
     </tbody>
   </table>
