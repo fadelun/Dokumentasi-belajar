@@ -1,6 +1,5 @@
 <script setup>
-import { ref, reactive, defineEmits, watch, onMounted } from "vue";
-import PopUp from "./Popup.vue";
+import { ref, defineEmits, onMounted } from "vue";
 
 const props = defineProps({
   baseURL: String,
