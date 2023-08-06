@@ -27,7 +27,9 @@ const handleHapus = (item) => {
         <td>{{ index + 1 }}</td>
         <td>{{ item.jumlah }}</td>
         <td>{{ item.keterangan }}</td>
-        <button @click="handleHapus(item)">Hapus</button>
+        <button class="btn-remove" @click="handleHapus(item)">
+          <i class="fa-solid fa-eraser fa-lg"></i>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -53,5 +55,14 @@ td {
   padding: 10px;
   border: solid 1px;
   text-align: center;
+}
+tr {
+  position: relative;
+  height: 60px;
+}
+.btn-remove {
+  position: absolute;
+  right: -90px;
+  top: 6px;
 }
 </style>
