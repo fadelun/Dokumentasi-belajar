@@ -2,7 +2,8 @@
 import Title from "./components/Title.vue";
 import FormPengeluaran from "./components/FormPengeluaran.vue";
 import ListPengeluaran from "./components/ListPengeluaran.vue";
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, watch, onMounted, onUpdated } from "vue";
+import html2canvas from "html2canvas";
 
 const daftar = ref([
   // contoh isi daftar
@@ -20,11 +21,26 @@ const daftar = ref([
   // },
 ]);
 
+const baseURL = ref("");
+
 onMounted(() => {
   // load localstorage
   daftar.value = JSON.parse(localStorage.getItem("daftar")) || [];
-  // console.log(daftar.value);
 });
+
+// onUpdated(() => {
+//   // htmlcanvas
+//   const target = document.getElementById("target-download");
+//   const button = document.querySelector("button.download");
+
+//   const unduhDaftar = () => {
+//     html2canvas(target).then((canvas) => {
+//       const base64image = canvas.toDataURL("image/jpg");
+//       baseURL.value = base64image;
+//     });
+//   };
+//   button.addEventListener("click", unduhDaftar);
+// });
 
 // tampilkan daftar
 const showList = computed(() => daftar.value.length > 0);
@@ -70,7 +86,11 @@ const hapusSemuaDaftar = () => {
 
 <template>
   <Title />
-  <FormPengeluaran @form="catatPengeluaran" @reset="hapusSemuaDaftar" />
+  <FormPengeluaran
+    @form="catatPengeluaran"
+    @reset="hapusSemuaDaftar"
+    :baseURL="baseURL"
+  />
   <ListPengeluaran
     v-if="showList"
     :daftarStorage="daftarStorage"

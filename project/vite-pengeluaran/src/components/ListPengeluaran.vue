@@ -11,28 +11,34 @@ const emit = defineEmits(["hapus"]);
 const handleHapus = (item) => {
   emit("hapus", item);
 };
+
+// onMounted(() => {
+
+// })
 </script>
 <template>
-  <h2>Total: {{ totalSemua }}</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Jumlah</th>
-        <th>Keterangan</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(item, index) in daftarStorage" :key="index">
-        <td>{{ index + 1 }}</td>
-        <td>{{ item.jumlah }}</td>
-        <td>{{ item.keterangan }}</td>
-        <button class="btn-remove" @click="handleHapus(item)">
-          <i class="fa-solid fa-eraser fa-lg"></i>
-        </button>
-      </tr>
-    </tbody>
-  </table>
+  <div ref="table" id="target-download">
+    <h2>Total: {{ totalSemua }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Jumlah</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in daftarStorage" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.jumlah }}</td>
+          <td>{{ item.keterangan }}</td>
+          <button class="btn-remove" @click="handleHapus(item)">
+            <i class="fa-solid fa-eraser fa-lg"></i>
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <style scoped>
 table {

@@ -1,10 +1,21 @@
 <script setup>
-import { ref, reactive, defineEmits, watch } from "vue";
+import { ref, reactive, defineEmits, watch, onMounted } from "vue";
+import PopUp from "./Popup.vue";
+
+const props = defineProps({
+  baseURL: String,
+});
 
 const jumlah = ref("");
+// declare a ref to hold the element reference
+const selectInput = ref(null);
 const keterangan = ref("");
 
-const emits = defineEmits(["form", "reset"]);
+const emits = defineEmits(["form", "reset", "unduh"]);
+
+onMounted(() => {
+  selectInput.value.focus();
+});
 
 const emitEnter = () => {
   emits("form", jumlah.value, keterangan.value);
@@ -15,11 +26,16 @@ const emitEnter = () => {
 const emitReset = () => {
   emits("reset");
 };
+
+const emitUnduh = () => {
+  emits("unduh");
+};
 </script>
 <template>
   <form @click.prevent="">
     <label for="jumlah">Jumlah:</label>
     <input
+      ref="selectInput"
       type="text"
       id="jumlah"
       name="jumlah"
@@ -31,6 +47,10 @@ const emitReset = () => {
     <div class="wrapper-button">
       <button @click="emitEnter" class="primary">Enter</button>
       <button @click="emitReset" class="danger">Reset</button>
+      <button @click="emitUnduh" class="download" disabled>
+        <i class="fa-solid fa-download"></i>
+      </button>
+      <!-- <PopUp v-if="baseURL" :baseURL="baseURL" /> -->
     </div>
   </form>
 </template>
@@ -63,5 +83,11 @@ button {
 }
 .danger {
   background-color: rgb(248, 28, 28);
+}
+
+.download {
+  background-color: rgb(80, 80, 255);
+  opacity: 0.4;
+  color: whitesmoke;
 }
 </style>
