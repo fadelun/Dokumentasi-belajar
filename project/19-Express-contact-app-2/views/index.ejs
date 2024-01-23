@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Hello, welcome to my site</h1>
+    <a href="/contact/add" class="btn btn-success">Tambah kontak</a>
+    <h4>Daftar nama mahasiswa:</h4>
+
+    <% if (mahasiswa.length < 1) { %>
+    <p style="font-weight: bold">Tidak ada data mahasiswa</p>
+    <% } %>
+    <ul>
+      <% mahasiswa.forEach(mhs => { %>
+
+      <li>
+        <p><%= mhs.nama %></p>
+        <p><%= mhs.nim %></p>
+      </li>
+
+      <% }) %>
+    </ul>
+  </body>
+</html>
